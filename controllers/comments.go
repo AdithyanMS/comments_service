@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"comments_service/databases/actions"
 	"comments_service/models"
 
 	"github.com/gin-gonic/gin"
@@ -18,5 +19,6 @@ func PostComment(c *gin.Context) {
 		return
 	}
 	Comments = append(Comments, comment)
+	actions.InsertComment(comment)
 	c.JSON(200, gin.H{"Success": "Comment posted"})
 }
